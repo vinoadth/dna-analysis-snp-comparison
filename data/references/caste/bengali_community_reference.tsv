@@ -1,0 +1,10 @@
+id	display_name	aasi_min	aasi_max	steppe_min	steppe_max	east_asian_min	east_asian_max	y_haplogroups
+bengali_brahmin	Bengali Brahmin	30	35	55	60	5	8	R1a:60;R2:15;J2:15
+kayastha	Kayastha	33	40	48	55	7	12	R1a:40;H-M69:30;R2:15
+baidya	Baidya	32	38	50	55	6	10	R1a:45;J2:20;H-M69:20
+vaidya	Vaidya / Nabashakh	35	42	42	50	8	14	H-M69:30;R1a:25;O-M175:15
+namasudra	Namasudra	38	45	35	42	12	18	H-M69:35;O-M175:20;R2:15
+rajbanshi	Rajbanshi	35	40	33	40	15	25	O-M175:25;H-M69:25;R1a:15
+pod	Pod / Poundra	40	48	35	40	10	18	H-M69:40;O-M175:20;L-M20:15
+santhal	Santhal (tribal)	30	38	15	25	35	50	O-M175:57;H-M69:25;C-M130:10
+bd_muslim	Bangladeshi Muslim (avg)	35	42	38	48	10	18	R1a:25;H-M69:25;J2:15;O-M175:15

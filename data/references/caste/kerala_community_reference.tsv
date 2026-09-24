@@ -1,0 +1,6 @@
+id	display_name	aasi_min	aasi_max	steppe_min	steppe_max	y_haplogroups	note
+namboothiri_brahmin	Namboothiri Brahmin	35	45	50	60	R1a:42;H-M69:12	Not the generic HO Brahmin bar (two samples).
+nair	Nair	45	55	40	50	R1a:20;H-M69:30	No public HO Nair bar.
+syrian_christian	Syrian Christian	50	60	35	45	R1a:11;H-M69:35	St. Thomas Christian / Nasrani; not Cochin Jewish (Jew_Cochin).
+ezhava_thiyya	Ezhava / Thiyya	55	65	30	40	R1a:7;H-M69:40	No public HO Ezhava bar.
+pulaya	Pulaya	65	75	20	30	R1a:3;H-M69:50	No public HO Pulaya bar.

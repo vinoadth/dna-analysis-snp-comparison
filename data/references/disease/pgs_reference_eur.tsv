@@ -1,0 +1,4 @@
+# Optional overrides for European reference mean/SD (raw score units).
+# When absent, mean/SD are derived from allelefrequency_effect in the scoring file.
+# pgs_id	ref_mean	ref_sd	ref_pop	source_note
+PGS000011	3.82	0.43	European	Tada et al. Eur Heart J 2015 — GRS50 validation cohort

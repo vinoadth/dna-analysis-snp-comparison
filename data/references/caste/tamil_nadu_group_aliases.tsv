@@ -1,0 +1,29 @@
+display_name	other_spellings	public_snp_source	status
+Vellalar	Vellala, Vellalar, VLR, Gugavellalar, Veerakodi Vellalar, Thuluva Vellalar, Pillai (title often used by Vellalar)	AADR HO pop VLR (Mondal 2016, 9 samples)	usable_now
+Irula	Irular, ILA, IRU	AADR HO Irula; GenomeAsia IRU (restricted VCF)	usable_now_via_AADR
+Tamil_STU	Sri Lankan Tamil, STU	AADR HO STU / STU-1 / STU-2 (1000 Genomes)	usable_now_not_a_TN_jati
+Iyer	Iyer, IYR, IYE, Tamil Brahmin	GenomeAsia IYE n=13; Nakatsuka Iyer_IR Illumina Omni n=19	genotypes_restricted
+Iyengar	Iyangar, Iyengar, IYA	GenomeAsia Iyangar IYA n=6	genotypes_restricted
+Saurashtra_Brahmin	SourasthraBrahmin, SOB	GenomeAsia SOB n=9	genotypes_restricted
+Nadar	Nadar Hindu, Nadar Christian	Nakatsuka Human Origins n=14	genotypes_restricted
+Kallar	Piramalai Kallar, Mukkulathor/Thevar subgroup	Nakatsuka Human Origins n=27	genotypes_restricted
+Agamudayar	Agamudaiyar, Mukkulathor/Thevar	Nakatsuka Human Origins n=1	genotypes_restricted_too_few
+Gounder	Kongu Vellala Gounder	Nakatsuka Human Origins n=2	genotypes_restricted_too_few
+Mudaliar	Mudaliyar, Sengundar Mudaliar, Muthuliar	Nakatsuka Human Origins n=1	genotypes_restricted_too_few
+Pallar	Pallan, Pallan_PL1, Devendrakulathan, Devendrakula Velalar	Nakatsuka Pallan_PL1 Illumina Omni n=20; Devendrakulathan HO n=4	genotypes_restricted
+Parayar	Paraiyar, Parayan, Paraiya, Adi Dravidar, Adi_Dravida	Nakatsuka Adi_Dravida HO n=10 (official TN name often used for Paraiyar)	genotypes_restricted
+Paravar	Paravan (coastal fishing; not the same as Parayar)	Nakatsuka Human Origins n=7	genotypes_restricted_different_community
+Arunthathiyar	Arunthathiyar	Nakatsuka Human Origins n=18	genotypes_restricted
+Chakkiliyan	Chakkiliyar	Nakatsuka Human Origins n=16	genotypes_restricted
+Pillai	Pillay, Vellalar Pillai	no separate labeled SNP panel; closest public is Vellalar/VLR	no_named_panel
+Chettiyar	Chettiar, Chetti, Nattukkottai Chettiar, Nagarathar	no panel under those strings	no_public_snp_panel
+Komati	Komati, Setti, Setty, Arya Vysya, Arya Vaishya, Vysya, Vaish	Nakatsuka Vysya HO n=39 and Affy6 n=13 (Andhra/Telangana trading caste; usual Komati/Setti label in papers)	genotypes_restricted_not_in_public_AADR
+Vaish	Vaish (North Indian Vaishya; not Komati)	Nakatsuka Affy6 n=4	genotypes_restricted_different_region
+Vanniyar	Vanniyakula Kshatriya, Padayachi, VAN	Basu 2003 had VAN but only STRs/mtDNA; not in HO, GenomeAsia S1a, or Nakatsuka SNP list	no_public_snp_panel
+Mala	Mala (Andhra Dalit; already in AADR; not Pallar/Parayar)	AADR HO Mala n=2	usable_now_andhra_not_tn
+Madiga	Madiga (Andhra Dalit; already in AADR)	AADR HO Madiga n=2	usable_now_andhra_not_tn
+Kapu	Kapu, Panta Kapu, Pattapu Kapu	AADR HO Kapu n=2	usable_now_andhra_not_chetti
+Kota	Nilgiris Kota	GenomeAsia KTA n=8	genotypes_restricted
+Toda	Nilgiris Toda	GenomeAsia TOD n=20	genotypes_restricted
+Paniya	Paniya, PNY	GenomeAsia PNY n=11; Nakatsuka several arrays	genotypes_restricted
+Urban_Chennai	MAA, Chennai	GenomeAsia MAA n=34 (not a jati)	genotypes_restricted

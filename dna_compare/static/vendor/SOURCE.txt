@@ -1,0 +1,8 @@
+Bootstrap v5.3.3 JS (MIT) — https://getbootstrap.com/
+Bootswatch v5.3.3 Cerulean theme (MIT) — https://bootswatch.com/cerulean/
+
+Vendored for offline dashboard use from jsDelivr:
+- cerulean.min.css (Bootswatch Cerulean, includes Bootstrap CSS)
+- bootstrap.bundle.min.js
+- LICENSE (Bootstrap)
+- BOOTSWATCH-LICENSE

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SNP comparison</title>
+    <link rel="stylesheet" href="/static/vendor/cerulean.min.css" />
+    <link rel="stylesheet" href="/static/app.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="container-fluid px-3 px-xl-4">
+        <span class="navbar-brand mb-0 h1">SNP comparison</span>
+      </div>
+    </nav>
+    <main class="container-fluid px-3 px-xl-4 py-4">
+      <div class="page-intro">
+        <p class="lead text-secondary">
+          Upload a SNP <code>.vcf</code>, a 23andMe-compatible raw <code>.txt</code> export, or open a bundled sample.
+          Mixture weights are from overlapping
+          AADR Human Origins SNPs (GRCh37 / hg19) — not ethnic identity. GSA v3 / gtc2vcf
+          files on GRCh38 are lifted to hg19 before comparison.
+        </p>
+        <section class="card shadow-sm mb-4" id="live-controls">
+          <div class="card-body">
+            <form id="analyze-form">
+              <div class="row g-3 align-items-end">
+                <div class="col-lg-5">
+                  <label class="form-label" for="sample-select">Bundled sample</label>
+                  <select class="form-select" id="sample-select" name="sample"></select>
+                </div>
+                <div class="col-lg-5">
+                  <label class="form-label" for="vcf-file">Or upload VCF / 23andMe raw</label>
+                  <input
+                    class="form-control"
+                    id="vcf-file"
+                    name="vcf"
+                    type="file"
+                    accept=".vcf,.vcf.gz,.txt,.23andme"
+                  />
+                </div>
+                <div class="col-lg-2">
+                  <button type="submit" class="btn btn-primary w-100" id="run-btn">Analyze</button>
+                </div>
+              </div>
+              <div class="row g-3 align-items-end mt-0">
+                <div class="col-lg-5">
+                  <label class="form-label" for="other-select">Optional second sample (relatedness)</label>
+                  <select class="form-select" id="other-select" name="other_sample"></select>
+                </div>
+                <div class="col-lg-5">
+                  <label class="form-label" for="other-file">Or upload a second VCF / raw file</label>
+                  <input
+                    class="form-control"
+                    id="other-file"
+                    name="other"
+                    type="file"
+                    accept=".vcf,.vcf.gz,.txt,.23andme"
+                  />
+                </div>
+                <div class="col-lg-2">
+                  <p class="form-text mb-0">Parent, relative, or friend — optional.</p>
+                </div>
+              </div>
+              <fieldset class="mt-3">
+                <legend class="form-label fs-6">Comparisons</legend>
+                <div class="d-flex flex-wrap gap-3">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="populations" id="cmp-populations" checked />
+                    <label class="form-check-label" for="cmp-populations">populations</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="caste" id="cmp-caste" checked />
+                    <label class="form-check-label" for="cmp-caste">caste</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="ancestry" id="cmp-ancestry" checked />
+                    <label class="form-check-label" for="cmp-ancestry">ancestry</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="hominin" id="cmp-hominin" checked />
+                    <label class="form-check-label" for="cmp-hominin">hominin</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="haplogroups" id="cmp-haplogroups" checked />
+                    <label class="form-check-label" for="cmp-haplogroups">haplogroups</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="disease" id="cmp-disease" checked />
+                    <label class="form-check-label" for="cmp-disease">disease (PGS)</label>
+                  </div>
+                </div>
+              </fieldset>
+              <div id="progress-panel" class="analyze-progress d-none mt-3" aria-live="polite">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                  <div
+                    class="spinner-border spinner-border-sm text-primary"
+                    role="status"
+                    aria-hidden="true"
+                  ></div>
+                  <span class="fw-medium" id="progress-elapsed">Analyzing… 0:00</span>
+                </div>
+                <div class="progress mb-2 analyze-progress-bar-wrap">
+                  <div
+                    id="progress-bar"
+                    class="progress-bar progress-bar-striped progress-bar-animated bg-primary"
+                    role="progressbar"
+                    style="width: 5%"
+                    aria-valuenow="5"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  ></div>
+                </div>
+                <p class="small text-secondary mb-1" id="progress-hint">
+                  First run can take several minutes while AADR frequency caches are built. This page is still working.
+                </p>
+                <ul id="progress-stages" class="analyze-progress-stages small mb-0"></ul>
+              </div>
+              <p class="form-text text-secondary mb-0 mt-2" id="status"></p>
+            </form>
+          </div>
+        </section>
+      </div>
+      <div id="results" class="results-wide d-none"></div>
+    </main>
+    <script src="/static/vendor/bootstrap.bundle.min.js"></script>
+    <script src="/static/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,93 @@
+# Additional-detail markers. Rows that share a key are scored together.
+# To add a later trait, copy these columns. effect_allele is counted toward hom_finding.
+key	topic	chrom	rsid	pos_hg19	pos_hg38	effect_allele	other_allele	gene	source	hom_finding	het_finding	ref_finding
+abo_blood_type	ABO blood type	9	rs8176719	136132908	133257521	D	I	ABO	Yamamoto 1990 / SNPedia ABO	Blood type O.	One O allele (A or B depending on rs8176746).	No O allele (A, B, or AB).
+abo_blood_type	ABO blood type	9	rs8176746	136131322	133255935	G	T	ABO	Yamamoto 1990 / SNPedia ABO	Blood type A (if no O indel).	One A and one B allele.	Blood type B (if no O indel).
+rh_factor	Rh factor (D antigen)	1	i4001527	0	0	D	I	RHD	23andMe RHD deletion assay	Likely Rh negative (−).	Likely Rh positive (+).	Likely Rh positive (+).
+rh_factor	Rh factor (D antigen)	1	rs590787	25629943	25303452	C	T	RHD	SNPedia / Wagner 2000 RHD deletion	Likely Rh negative (−).	Likely Rh positive (+).	Likely Rh positive (+).
+vegetarian_community	Vegetarian community	11	rs174537	61552680	61785208	G	T	FADS1	Kothapalli et al. 2016 Mol Biol Evol 33:1726	This DNA belongs to a vegetarian community.	One parent belongs to a vegetarian community.	These chr 11 FADS SNPs do not show the vegetarian-community haplotype.
+vegetarian_community	Vegetarian community	11	rs174546	61569830	61802358	C	T	FADS1	Kothapalli et al. 2016 Mol Biol Evol 33:1726	This DNA belongs to a vegetarian community.	One parent belongs to a vegetarian community.	These chr 11 FADS SNPs do not show the vegetarian-community haplotype.
+vegetarian_community	Vegetarian community	11	rs174547	61570783	61803311	T	C	FADS1	Kothapalli et al. 2016 Mol Biol Evol 33:1726	This DNA belongs to a vegetarian community.	One parent belongs to a vegetarian community.	These chr 11 FADS SNPs do not show the vegetarian-community haplotype.
+vegetarian_community	Vegetarian community	11	rs174548	61571348	61803876	C	G	FADS1	Kothapalli et al. 2016 Mol Biol Evol 33:1726	This DNA belongs to a vegetarian community.	One parent belongs to a vegetarian community.	These chr 11 FADS SNPs do not show the vegetarian-community haplotype.
+vegetarian_community	Vegetarian community	11	rs174550	61571478	61804006	T	C	FADS1	Kothapalli et al. 2016 Mol Biol Evol 33:1726	This DNA belongs to a vegetarian community.	One parent belongs to a vegetarian community.	These chr 11 FADS SNPs do not show the vegetarian-community haplotype.
+vegetarian_community	Vegetarian community	11	rs174556	61580635	61813163	C	T	FADS1	Kothapalli et al. 2016 Mol Biol Evol 33:1726	This DNA belongs to a vegetarian community.	One parent belongs to a vegetarian community.	These chr 11 FADS SNPs do not show the vegetarian-community haplotype.
+vegetarian_community	Vegetarian community	11	rs174570	61597212	61829740	C	T	FADS2	Kothapalli et al. 2016 Mol Biol Evol 33:1726	This DNA belongs to a vegetarian community.	One parent belongs to a vegetarian community.	These chr 11 FADS SNPs do not show the vegetarian-community haplotype.
+vegetarian_community	Vegetarian community	11	rs1535	61597972	61830500	A	G	FADS2	Kothapalli et al. 2016 Mol Biol Evol 33:1726	This DNA belongs to a vegetarian community.	One parent belongs to a vegetarian community.	These chr 11 FADS SNPs do not show the vegetarian-community haplotype.
+vegetarian_community	Vegetarian community	11	rs174583	61609750	61842278	C	T	FADS2	Kothapalli et al. 2016 Mol Biol Evol 33:1726	This DNA belongs to a vegetarian community.	One parent belongs to a vegetarian community.	These chr 11 FADS SNPs do not show the vegetarian-community haplotype.
+lactase	Milk / lactase	2	rs4988235	136608646	135851086	A	G	MCM6	Enattah et al. 2002 Nat Genet 30:233	Lactase persistence — adult milk-sugar digestion is more likely.	One lactase-persistence allele; digestion of milk sugar may be reduced.	No lactase-persistence alleles; adult milk-sugar digestion is likely limited.
+lactase	Milk / lactase	2	rs41380347	136608651	135851091	C	A	MCM6	Tishkoff et al. 2007 Nat Genet 39:31	Lactase persistence — adult milk-sugar digestion is more likely.	One lactase-persistence allele; digestion of milk sugar may be reduced.	No lactase-persistence alleles; adult milk-sugar digestion is likely limited.
+bitter_taste	Bitter taste (PTC)	7	rs713598	141673345	141973545	C	G	TAS2R38	Kim et al. 2003 Science 299:1221	Likely a bitter (PTC) taster.	Intermediate bitter taste.	Likely a bitter (PTC) non-taster.
+bitter_taste	Bitter taste (PTC)	7	rs1726866	141672705	141972905	G	A	TAS2R38	Kim et al. 2003 Science 299:1221	Likely a bitter (PTC) taster.	Intermediate bitter taste.	Likely a bitter (PTC) non-taster.
+bitter_taste	Bitter taste (PTC)	7	rs10246939	141672604	141972804	C	T	TAS2R38	Kim et al. 2003 Science 299:1221	Likely a bitter (PTC) taster.	Intermediate bitter taste.	Likely a bitter (PTC) non-taster.
+actn3	Sprint vs endurance	11	rs1815739	66328095	66560624	C	T	ACTN3	Yang et al. 2003 Am J Hum Genet 73:627	ACTN3 RR — more often associated with sprint / power.	ACTN3 RX — mixed sprint and endurance.	ACTN3 XX — more often associated with endurance.
+actn3	Sprint vs endurance	17	rs4343	61566031	63488670	G	A	ACE	Rigat et al. 1990 Nucleic Acids Res	Sprint/power lean with ACTN3 RR.	Mixed ACE ID.	Endurance lean with ACTN3 XX.
+actn3	Sprint vs endurance	17	rs4341	61565990	63488629	G	C	ACE	Rigat et al. 1990 Nucleic Acids Res	Sprint/power lean with ACTN3 RR.	Mixed ACE ID.	Endurance lean with ACTN3 XX.
+earwax	Earwax type	16	rs17822931	48258198	48224287	T	C	ABCC11	Yoshiura et al. 2006 Nat Genet 38:324	Dry earwax.	Wet earwax (wet is dominant).	Wet earwax.
+asparagus	Asparagus odor	1	rs4481887	248496863	248333561	A	G	OR2M7	Eriksson et al. 2010 Chem Senses	Likely to notice asparagus odor in urine.	Some ability to notice asparagus odor.	Less likely to notice asparagus odor.
+caffeine	Caffeine metabolism	15	rs762551	75041917	74749576	A	C	CYP1A2	Sachse et al. 1999 Br J Clin Pharmacol 47:445	Faster caffeine metabolism.	Intermediate caffeine metabolism.	Slower caffeine metabolism.
+eye_color	Eye color	15	rs12913832	28365618	28120472	G	A	HERC2	Eiberg et al. 2008 Hum Genet 123:177	Likely blue or green eyes.	Intermediate; brown or hazel is more likely.	Likely brown eyes.
+eye_color	Eye color	15	rs1800407	28230318	27985172	T	C	OCA2	Sturm et al. 2008	Likely blue or green eyes.	Intermediate; brown or hazel is more likely.	Likely brown eyes.
+eye_color	Eye color	15	rs1129038	28356859	28111713	T	C	HERC2	Eiberg et al. 2008 Hum Genet 123:177	Likely blue or green eyes.	Intermediate; brown or hazel is more likely.	Likely brown eyes.
+eye_color	Eye color	15	rs1667394	28530182	28285036	T	C	OCA2	Sulem et al. 2007 Nat Genet	Likely blue or green eyes.	Intermediate; brown or hazel is more likely.	Likely brown eyes.
+pigmentation	Pigmentation haplotype	15	rs1426654	48426484	48134287	A	G	SLC24A5	Lamason et al. 2005 Science 310:1782	Lighter / more European-like pigmentation alleles.	Mixed pigmentation alleles.	Ancestral pigmentation haplotype (common in South Asia).
+pigmentation	Pigmentation haplotype	5	rs16891982	33951693	33951588	G	C	SLC45A2	Graf et al. 2005 Hum Mutat 25:278	Lighter / more European-like pigmentation alleles.	Mixed pigmentation alleles.	Ancestral pigmentation haplotype (common in South Asia).
+pigmentation	Pigmentation haplotype	11	rs1042602	88911696	89178529	A	C	TYR	Stokowski et al. 2007 PLoS Genet	Lighter / more European-like pigmentation alleles.	Mixed pigmentation alleles.	Ancestral pigmentation haplotype (common in South Asia).
+pigmentation	Pigmentation haplotype	11	rs1393350	89011046	89277879	A	G	TYR	Sulem et al. 2007 Nat Genet	Lighter / more European-like pigmentation alleles.	Mixed pigmentation alleles.	Ancestral pigmentation haplotype (common in South Asia).
+pigmentation	Pigmentation haplotype	14	rs12896399	92773663	92307319	T	G	SLC24A4	Sulem et al. 2007 Nat Genet	Lighter / more European-like pigmentation alleles.	Mixed pigmentation alleles.	Ancestral pigmentation haplotype (common in South Asia).
+hfe	HFE iron overload	6	rs1800562	26093141	26092913	A	G	HFE	Feder et al. 1996 Nat Genet	C282Y homozygous.	C282Y carrier.	No C282Y.
+hfe	HFE iron overload	6	rs1799945	26091179	26090951	G	C	HFE	Feder et al. 1996 Nat Genet	H63D homozygous.	H63D carrier.	No H63D.
+hfe	HFE iron overload	6	rs1800730	26091185	26090957	T	A	HFE	Mura et al. 1999	S65C present.	S65C carrier.	No S65C.
+clotting	Clotting variants	1	rs6025	169519049	169549761	T	C	F5	Bertina et al. 1994 Nature	Factor V Leiden homozygous.	Factor V Leiden carrier.	No Factor V Leiden.
+clotting	Clotting variants	11	rs1799963	46761055	46739505	A	G	F2	Poort et al. 1996 Blood	Prothrombin G20210A homozygous.	Prothrombin G20210A carrier.	No G20210A.
+mthfr	MTHFR	1	rs1801133	11856378	11790721	A	G	MTHFR	Frosst et al. 1995 Nat Genet	677 TT.	677 CT.	677 CC.
+mthfr	MTHFR	1	rs1801131	11854476	11788819	G	T	MTHFR	van der Put et al. 1998	1298 CC.	1298 AC.	1298 AA.
+warfarin	Warfarin sensitivity	16	rs9923231	31107689	31096368	T	C	VKORC1	Rieder et al. 2005 NEJM	VKORC1 sensitive.	One sensitive allele.	Typical VKORC1.
+warfarin	Warfarin sensitivity	10	rs1799853	96702047	94942290	T	C	CYP2C9	Rettie et al.	CYP2C9*2.	CYP2C9*2 carrier.	No *2.
+warfarin	Warfarin sensitivity	10	rs1057910	96741053	94981296	C	A	CYP2C9	Rettie et al.	CYP2C9*3.	CYP2C9*3 carrier.	No *3.
+alcohol	Alcohol metabolism	12	rs671	112241766	111803962	A	G	ALDH2	Yoshida et al. 1984 PNAS	ALDH2 deficient.	ALDH2 heterozygote flush.	Typical ALDH2.
+alcohol	Alcohol metabolism	4	rs1229984	100239319	99318068	T	C	ADH1B	Osier et al. 2002	Faster ADH1B *2.	One ADH1B *2.	Typical ADH1B.
+mc1r	Red hair / fair skin	16	rs1805008	89986144	89919738	T	C	MC1R	Valverde et al. 1995	R160W.	R160W carrier.	No R160W.
+mc1r	Red hair / fair skin	16	rs1805009	89986546	89920140	C	G	MC1R	Valverde et al. 1995	D294H.	D294H carrier.	No D294H.
+mc1r	Red hair / fair skin	16	rs11547464	89986091	89919685	A	G	MC1R	Valverde et al. 1995	R142H.	R142H carrier.	No R142H.
+mc1r	Red hair / fair skin	16	rs2228479	89985940	89919534	A	G	MC1R	Valverde et al. 1995	V60M.	V60M carrier.	No V60M.
+baldness	Male-pattern baldness	20	rs2180439	21853100	21872454	T	C	intergenic	Li et al. 2012 PLoS Genet	Higher AGA tendency.	Intermediate AGA.	Lower AGA tendency.
+baldness	Male-pattern baldness	20	rs1160312	22050503	22069857	A	G	intergenic	Richards et al. 2008 Nat Genet	Higher AGA tendency.	Intermediate AGA.	Lower AGA tendency.
+baldness	Male-pattern baldness	X	rs2497938	66563018	67343178	C	T	AR	Li et al. 2012 PLoS Genet	Higher AGA tendency.	Intermediate AGA.	Lower AGA tendency.
+baldness	Male-pattern baldness	X	rs1385699	65824986	66609106	T	C	AR	Hillmer et al. 2008	Higher AGA tendency.	Intermediate AGA.	Lower AGA tendency.
+vitamin_d	Vitamin D related	4	rs2282679	72608383	71742766	G	T	GC	Wang et al. 2010 Lancet	Lower 25-OH-D alleles.	Intermediate.	Fewer low-vitamin-D alleles.
+vitamin_d	Vitamin D related	11	rs10741657	14914878	14893331	G	A	CYP2R1	Wang et al. 2010 Lancet	Lower 25-OH-D alleles.	Intermediate.	Fewer low-vitamin-D alleles.
+vitamin_d	Vitamin D related	12	rs1544410	48239835	47846052	T	C	VDR	Uitterlinden et al.	Lower 25-OH-D alleles.	Intermediate.	Fewer low-vitamin-D alleles.
+heart_disease	Coronary artery disease (9p21)	9	rs1333049	22125503	22106073	C	G	CDKN2B-AS1	McPherson et al. 2007 / Samani et al. 2007	Two copies of the 9p21 CAD-risk allele.	One 9p21 CAD-risk allele.	No 9p21 CAD-risk allele at rs1333049.
+heart_disease	Coronary artery disease (9p21)	9	rs4977574	22124477	22105047	A	G	CDKN2B-AS1	Helgadottir et al. 2007 / McPherson et al. 2007	Two copies of the 9p21 CAD-risk allele.	One 9p21 CAD-risk allele.	No 9p21 CAD-risk allele at rs4977574.
+sleep_preferences	Sleep preferences	20	rs73598374	43248162	44651586	A	G	ADA	Bachmann et al. 2012 / Retey et al. 2005	More sleep-pressure sensitivity (ADA G22A AA).	Intermediate sleep-pressure response.	Typical ADA activity / sleep-pressure response.
+sleep_preferences	Sleep preferences	4	rs1801260	56301381	56202504	C	T	CLOCK	Katzenberg et al. 1998 / Robilliard et al. 2002	Tendency toward evening chronotype (CLOCK 3111C).	Intermediate chronotype.	Tendency toward morning chronotype.
+sleep_preferences	Sleep preferences	2	rs516134	239066261	238348668	G	A	PER2	Jones et al. 2016 Nat Commun / Jones et al. 2019 Nat Commun	More morning-leaning chronotype alleles.	Intermediate chronotype.	More evening-leaning chronotype alleles.
+sleep_preferences	Sleep preferences	1	rs228697	7887878	8017121	A	G	PER3	Archer et al. 2003 / Jones et al. 2019 Nat Commun	More evening-leaning PER3 alleles.	Intermediate chronotype.	More morning-leaning PER3 alleles.
+celiac	Celiac susceptibility (HLA tags)	6	rs2187668	32605884	32198042	T	C	HLA-DQA1	Dubois et al. 2010 Nat Genet	HLA-DQ2.5 tag alleles present — higher celiac-susceptibility tag (not diagnostic).	One DQ2.5 tag allele.	No DQ2.5 tag at rs2187668.
+celiac	Celiac susceptibility (HLA tags)	6	rs7454108	20716977	20386774	G	T	HLA-DQB1	Dubois et al. 2010 Nat Genet	HLA-DQ8 tag alleles present — higher celiac-susceptibility tag (not diagnostic).	One DQ8 tag allele.	No DQ8 tag at rs7454108.
+celiac	Celiac susceptibility (HLA tags)	6	rs7775228	31224712	30817385	C	T	HLA-DQB1	Dubois et al. 2010 Nat Genet	Additional celiac-risk tag allele present.	One risk-tag allele.	No rs7775228 risk-tag allele.
+ibd	IBD / Crohn tags	16	rs2066844	50745926	50712015	C	T	NOD2	Hugot et al. 2001 Nature	NOD2 Crohn-risk allele present (research tag).	One NOD2 risk allele.	No common NOD2 risk allele.
+ibd	IBD / Crohn tags	1	rs11209026	67705958	67240275	G	A	IL23R	Duerr et al. 2006 Science	IL23R protective allele present — lower Crohn-risk tag.	One IL23R protective allele.	No IL23R protective allele at rs11209026.
+autoimmune_ptpn22	Autoimmune (PTPN22)	1	rs2476601	114377568	113834946	A	G	PTPN22	Bottini et al. 2004 J Exp Med	PTPN22 R620W risk allele present — autoimmune-risk tag (not diagnostic).	One PTPN22 risk allele.	No PTPN22 R620W risk allele.
+cyp2c19	CYP2C19 metabolism	10	rs4244285	96541616	94781859	A	G	CYP2C19	Scott et al. 2011	CYP2C19*2 homozygous — likely poor metabolizer (research only).	One *2 allele — intermediate or poor metabolizer lean.	No CYP2C19*2 allele.
+cyp2c19	CYP2C19 metabolism	10	rs4986893	96540410	94780653	A	G	CYP2C19	Scott et al. 2011	CYP2C19*3 homozygous — likely poor metabolizer (research only).	One *3 allele.	No CYP2C19*3 allele.
+cyp2c19	CYP2C19 metabolism	10	rs28399504	96522463	94762706	A	G	CYP2C19	Scott et al. 2011	CYP2C19*4 allele present — poor-metabolizer lean.	One *4 allele.	No CYP2C19*4 allele.
+tpmt	TPMT (thiopurines)	6	rs1142345	18130947	18130918	G	A	TPMT	Weinshilboum 2001	TPMT reduced-function allele homozygous — thiopurine toxicity risk tag.	One TPMT reduced-function allele.	No common TPMT *3A allele.
+slco1b1	SLCO1B1 (statins)	12	rs4149056	21331549	21331549	C	T	SLCO1B1	Link et al. 2008 NEJM	SLCO1B1 reduced-function homozygous — statin myopathy risk tag.	One SLCO1B1 reduced-function allele.	Typical SLCO1B1 genotype.
+nat2	NAT2 acetylator status	8	rs1800566	18257961	18300560	A	G	NAT2	Hein et al. 2000	Slow NAT2 acetylator — slower clearance of some drugs (research only).	Intermediate NAT2 acetylator.	Fast NAT2 acetylator lean.
+nat2	NAT2 acetylator status	8	rs1799930	18258768	18400593	A	G	NAT2	Hein et al. 2000	Slow NAT2 acetylator.	Intermediate NAT2 acetylator.	Fast NAT2 acetylator lean.
+nat2	NAT2 acetylator status	8	rs1208	18258265	18400806	A	G	NAT2	Hein et al. 2000	Slow NAT2 acetylator.	Intermediate NAT2 acetylator.	Fast NAT2 acetylator lean.
+hair_color	Hair color	6	rs12203592	396321	396321	G	T	IRF4	Han et al. 2008 Nature Genet	Lighter hair-color alleles (blond/light brown lean).	Mixed hair-color alleles.	Darker hair-color alleles lean.
+hair_color	Hair color	12	rs12821256	89328335	89328335	G	T	KITLG	Gudbjartsson et al. 2008 Nat Genet	Blond/light hair alleles lean.	Mixed hair-color alleles.	Darker hair alleles lean.
+nicotine	Nicotine dependence	15	rs16969968	78882935	78590583	A	G	CHRNA5	Tobacco Genetics Consortium 2010 Nat Genet	Higher nicotine-dependence risk alleles.	One risk allele.	Lower-risk alleles at CHRNA5/CHRNA3.
+nicotine	Nicotine dependence	15	rs1051730	78894497	78601997	A	G	CHRNA3	Tobacco Genetics Consortium 2010 Nat Genet	Higher nicotine-dependence risk alleles.	One risk allele.	Lower-risk alleles at CHRNA5/CHRNA3.
+obesity	Obesity / BMI (FTO)	16	rs9939609	53820527	53786615	A	T	FTO	Frayling et al. 2007 Science	More FTO obesity-risk alleles.	One FTO risk allele.	Fewer FTO obesity-risk alleles.
+obesity	Obesity / BMI (FTO)	16	rs1421085	53816269	53767042	T	C	FTO	Frayling et al. 2007 Science	More FTO obesity-risk alleles.	One FTO risk allele.	Fewer FTO obesity-risk alleles.
+t2d_single	Type 2 diabetes (single SNPs)	10	rs7903146	114758349	112998590	T	C	TCF7L2	Grant et al. 2006 Nat Genet	TCF7L2 risk alleles — T2D susceptibility tag.	One TCF7L2 risk allele.	No TCF7L2 risk allele at rs7903146.
+t2d_single	Type 2 diabetes (single SNPs)	11	rs5219	17409520	17388025	T	C	KCNJ11	Gloyn et al. 2003 Diabetes	TCF7L2/KCNJ11 T2D-risk tag allele present.	One KCNJ11 risk allele.	No KCNJ11 risk allele at rs5219.
+apoe	APOE genotype	19	rs429358	45411941	44908684	C	T	APOE	Corder et al. 1993 Science	APOE e4 allele present — Alzheimer-risk tag (research only, not diagnostic).	One e4 allele.	No e4 allele at rs429358.
+apoe	APOE genotype	19	rs7412	45412079	44908822	T	C	APOE	Corder et al. 1993 Science	APOE e2 allele present — may modify lipid/Alzheimer risk tags.	One e2 allele.	No e2 allele at rs7412.
+cilantro	Cilantro / soapy taste	11	rs8021378	49818039	49362596	A	G	OR6A2	Eriksson et al. 2012 Flavour	Likely to taste cilantro as soapy.	Intermediate cilantro taste.	Unlikely to taste cilantro as soapy.
+cilantro	Cilantro / soapy taste	5	rs2736100	1286514	1286401	A	C	TERT region	Eriksson et al. 2012 Flavour	Likely to taste cilantro as soapy.	Intermediate cilantro taste.	Unlikely to taste cilantro as soapy.
+photic_sneeze	Photic sneeze reflex	2	rs6151429	89883095	90064213	A	G	intergenic	Eriksson et al. 2010 PLoS Genet	Likely photic sneeze reflex (ACHOO).	Intermediate.	Unlikely photic sneeze reflex.
+motion_sickness	Motion sickness	13	rs10512472	23967042	35557785	A	G	intergenic	Hromatka et al. 2015 Hum Mol Genet	Higher motion-sickness susceptibility alleles.	One susceptibility allele.	Lower motion-sickness susceptibility alleles.

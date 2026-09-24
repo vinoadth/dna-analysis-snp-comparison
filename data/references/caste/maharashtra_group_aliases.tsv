@@ -1,0 +1,11 @@
+display_name	other_spellings	public_snp_source	status
+Maratha	Maratha, Maratha Kunbi, 96 Kuli Maratha	no AADR HO label; use marathi_community_reference.tsv	reference_table_only
+Deshastha Brahmin	Deshastha, Deshastha Brahmin	no AADR HO label; HO Brahmin is two generic samples	reference_table_only
+Chitpavan Brahmin	Chitpavan, CKP, Konkanastha Brahmin	no AADR HO label	reference_table_only
+Karhade Brahmin	Karhade, Karhade Brahmin	no AADR HO label	reference_table_only
+Kunbi	Kunbi, Kunbi Maratha	no AADR HO label	reference_table_only
+Dhangar	Dhangar, Dhangar (pastoral)	no AADR HO label	reference_table_only
+Mali	Mali (gardener caste, Maharashtra)	no AADR HO label	reference_table_only
+Mahar	Mahar, Mahar (Scheduled Caste)	no AADR HO label	reference_table_only
+HO_Brahmin	Brahmin (AADR)	Brahmin n=2 in AADR HO	usable_now_not_mh_jati
+HO_Indian	Indian (AADR)	Indian n=1 in AADR HO	usable_now_not_a_jati

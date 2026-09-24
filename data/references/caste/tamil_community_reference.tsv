@@ -1,0 +1,11 @@
+id	display_name	aasi_min	aasi_max	steppe_min	steppe_max	y_haplogroups	note
+iyer	Tamil Brahmin (Iyer)	55	62	18	25	R1a:25;H-M69:18;L-M20:15;J2:20	HO Brahmin is two samples and is not Iyer.
+iyengar	Tamil Brahmin (Iyengar)	55	60	18	24	R1a:22;H-M69:16;L-M20:17;J2:22	Iyengar is not in public AADR HO.
+vellalar	Vellalar	65	72	5	10	H-M69:30;L-M20:22;J2:12;R1a:5	HO VLR is 9 Mondal samples, not every Vellalar subdivision.
+thevar	Thevar (Mukkulathor)	66	74	4	8	H-M69:35;L-M20:20;J2:10;R2:8	No public HO panel for Thevar / Mukkulathor.
+nadar	Nadar	68	75	3	7	H-M69:32;L-M20:18;J2:8;O-M175:5	Nadar HO genotypes are restricted.
+vanniyar	Vanniyar	63	70	6	12	H-M69:28;L-M20:18;R1a:8;J2:12	No public HO SNP panel for Vanniyar.
+gounder	Gounder (Kongu Vellalar)	64	71	5	10	H-M69:30;L-M20:20;J2:14;R2:7	Not the same as HO Vellalar/VLR.
+paraiyar	Scheduled Castes (Paraiyar)	72	80	1	4	H-M69:40;L-M20:15;F*:12;C-M130:8	No public HO Parayar bar; do not read Mala/Madiga as this.
+irula	Irula (Tribal)	78	88	0	2	H-M69:45;F*:20;C-M130:12;L-M20:8	HO Irula is a small tribal set.
+sri_lankan_tamil	Sri Lankan Tamil	67	75	3	8	H-M69:33;L-M20:20;J2:10;R1a:5	HO STU is 1000 Genomes Sri Lankan Tamil, not a Tamil Nadu jati.

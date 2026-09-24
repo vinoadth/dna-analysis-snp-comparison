@@ -1,0 +1,14 @@
+.git
+.venv
+__pycache__
+*.py[cod]
+.DS_Store
+*.egg-info
+.pytest_cache
+data/references/aadr/*.geno
+data/references/aadr/*.snp
+data/references/aadr/*.ind
+data/references/aadr/*.anno
+data/references/cache
+data/uploads
+data/references/liftover

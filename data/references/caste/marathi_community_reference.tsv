@@ -1,0 +1,9 @@
+id	display_name	aasi_min	aasi_max	steppe_min	steppe_max	y_haplogroups	note
+maratha	Maratha	50	55	40	45	R1a:12;H-M69:35	No public HO Maratha bar; reference ranges only.
+deshastha_brahmin	Deshastha Brahmin	38	44	52	58	R1a:50;H-M69:11	Not the generic HO Brahmin bar (two samples).
+chitpavan_brahmin	Chitpavan (CKP) Brahmin	40	46	50	56	R1a:45;H-M69:14	Not the generic HO Brahmin bar (two samples).
+karhade_brahmin	Karhade Brahmin	40	45	50	55	R1a:47;H-M69:13	Not the generic HO Brahmin bar (two samples).
+kunbi	Kunbi	52	58	38	43	R1a:10;H-M69:37	No public HO Kunbi bar.
+dhangar	Dhangar	53	58	36	42	R1a:11;H-M69:33	No public HO Dhangar bar.
+mali	Mali	55	60	35	40	R1a:9;H-M69:35	Maharashtra Mali; not a separate HO label.
+mahar	Mahar	60	68	28	35	R1a:6;H-M69:40	No public HO Mahar bar.

@@ -1,0 +1,14 @@
+[build-system]
+requires = ["maturin>=1.5,<2.0"]
+build-backend = "maturin"
+
+[project]
+name = "dna-compare"
+version = "0.1.0"
+description = "DNA SNP comparison with optional Rust acceleration"
+requires-python = ">=3.10,<3.15"
+dependencies = ["numpy>=1.24"]
+
+[tool.maturin]
+features = ["pyo3/extension-module"]
+module-name = "dna_compare_rs"
