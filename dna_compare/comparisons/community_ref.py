@@ -12,6 +12,7 @@ from dna_compare.config import (
     PUNJABI_COMMUNITY_REF,
     Settings,
     TAMIL_COMMUNITY_REF,
+    TELUGU_COMMUNITY_REF,
 )
 from dna_compare.models import CommunityRefMatch, ComparisonBlock, HaplogroupResult
 
@@ -128,6 +129,35 @@ KERALA_NOTES = [
     "This is a reference-table overlay, not a caste assignment and not an AADR HO bar.",
 ]
 
+TELUGU_FILENAME_HINTS = (
+    "telugu",
+    "andhra",
+    "telangana",
+    "hyderabad",
+    "vijayawada",
+    "guntur",
+    "visakhapatnam",
+    "vizag",
+    "warangal",
+    "nellore",
+    "tirupati",
+    "reddy",
+    "kamma",
+    "kapu",
+    "velama",
+    "niyogi",
+    "vaidiki",
+    "madiga",
+)
+
+TELUGU_NOTES = [
+    "Telugu fit compares ASI to AASI_Onge and ANI to Steppe_MLBA from the 3-source model.",
+    "Only Kapu, Mala, Madiga, and Telugu (ITU) have HO bars; Reddy, Kamma, Velama, and Telugu Brahmin are reference ranges only.",
+    "HO Brahmin (two samples) is not Niyogi or Vaidiki — use this table for Telugu Brahmin ranges.",
+    "Only R1a has a published frequency; other listed Y haplogroups are dominant lineages and are not scored.",
+    "This is a reference-table overlay, not a caste assignment and not an AADR HO bar.",
+]
+
 _PANEL_ALIASES_CACHE: dict[str, tuple[str, ...]] | None = None
 
 _Y_ALIASES = (
@@ -159,7 +189,7 @@ class CommunityRefRow:
     aasi_max: float
     steppe_min: float
     steppe_max: float
-    y_haplogroups: dict[str, float]
+    y_haplogroups: dict[str, float | None]
     note: str
     indus_min: float | None = None
     indus_max: float | None = None
@@ -297,6 +327,20 @@ COMMUNITY_REF_PANELS: tuple[CommunityRefPanelSpec, ...] = (
         sample_aasi_label="This ASI",
         sample_steppe_label="This ANI",
     ),
+    CommunityRefPanelSpec(
+        panel_id="telugu",
+        title="Telugu community reference ranges",
+        path=TELUGU_COMMUNITY_REF,
+        notes=tuple(TELUGU_NOTES),
+        caste_label="Telugu",
+        filename_hints=TELUGU_FILENAME_HINTS,
+        caste_labels=("Telugu", "Kapu", "Mala", "Madiga"),
+        proxy_caste_labels=("Brahmin",),
+        ref_aasi_label="Ref ASI",
+        ref_steppe_label="Ref ANI",
+        sample_aasi_label="This ASI",
+        sample_steppe_label="This ANI",
+    ),
 )
 
 
@@ -370,16 +414,23 @@ def interval_score(value: float | None, lo: float, hi: float) -> float | None:
     return max(0.0, 1.0 - dist / 15.0)
 
 
-def parse_y_haplogroups(raw: str) -> dict[str, float]:
-    out: dict[str, float] = {}
+def parse_y_haplogroups(raw: str) -> dict[str, float | None]:
+    """Parse ``name:pct`` tokens; a bare ``name`` is a dominant lineage with no published frequency."""
+    out: dict[str, float | None] = {}
     for part in (raw or "").split(";"):
         token = part.strip()
-        if not token or ":" not in token:
+        if not token:
             continue
-        name, pct = token.split(":", 1)
+        name, _sep, pct = token.partition(":")
         key = collapse_ref_y(name.strip()) or name.strip()
-        out[key] = float(pct)
+        out[key] = float(pct) if pct.strip() else None
     return out
+
+
+def _format_ref_y(y_haplogroups: dict[str, float | None]) -> str:
+    return "; ".join(
+        name if pct is None else f"{name} ~{pct:.0f}%" for name, pct in y_haplogroups.items()
+    )
 
 
 def _collapse_uniform_notes(rows: list[CommunityRefRow]) -> list[CommunityRefRow]:
@@ -458,6 +509,10 @@ def load_marathi_community_reference(path: Path | None = None) -> list[Community
 
 def load_kerala_community_reference(path: Path | None = None) -> list[CommunityRefRow]:
     return load_community_reference(path or KERALA_COMMUNITY_REF)
+
+
+def load_telugu_community_reference(path: Path | None = None) -> list[CommunityRefRow]:
+    return load_community_reference(path or TELUGU_COMMUNITY_REF)
 
 
 def _ancestry_pct(ancestry: ComparisonBlock | None, name: str) -> float | None:
@@ -547,6 +602,13 @@ def kerala_reference_applicable(
     return panel_reference_applicable(_panel_by_id("kerala"), caste, filename=filename)
 
 
+def telugu_reference_applicable(
+    caste: ComparisonBlock | None,
+    filename: str | None = None,
+) -> bool:
+    return panel_reference_applicable(_panel_by_id("telugu"), caste, filename=filename)
+
+
 def _panel_path(panel: CommunityRefPanelSpec, settings: Settings | None) -> Path:
     if settings is None:
         return panel.path
@@ -562,6 +624,8 @@ def _panel_path(panel: CommunityRefPanelSpec, settings: Settings | None) -> Path
         return settings.marathi_community_ref
     if panel.panel_id == "kerala":
         return settings.kerala_community_ref
+    if panel.panel_id == "telugu":
+        return settings.telugu_community_ref
     return panel.path
 
 
@@ -622,7 +686,9 @@ def _score_panel(
         y_note = "Y not used (no derived backbone call in this VCF)."
         if sample_y_key and row.y_haplogroups:
             typical = row.y_haplogroups.get(sample_y_key)
-            if typical is not None:
+            if sample_y_key in row.y_haplogroups and typical is None:
+                y_note = f"Sample {sample_y} maps to {sample_y_key} (listed as dominant; no frequency in table)."
+            elif typical is not None:
                 y_score = min(1.0, typical / 25.0)
                 y_note = f"Sample {sample_y} maps to {sample_y_key} (table ~{typical:.0f}%)."
             else:
@@ -705,7 +771,7 @@ def _score_panel(
                     if row.east_asian_min is not None and row.east_asian_max is not None
                     else ""
                 ),
-                ref_y="; ".join(f"{name} ~{pct:.0f}%" for name, pct in row.y_haplogroups.items()),
+                ref_y=_format_ref_y(row.y_haplogroups),
                 sample_y=sample_y,
                 y_note=y_note,
                 note=row.note,

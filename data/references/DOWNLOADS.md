@@ -72,7 +72,7 @@ Downloaded metadata (not genotypes) lives in `data/references/caste/`:
 | `maharashtra_group_aliases.tsv` | Maharashtra jati names with no AADR HO bar (Maratha, Kunbi, Deshastha/Chitpavan Brahmin, …). |
 | `kerala_group_aliases.tsv` | Kerala / Malayalam community names with no AADR HO bar (Nair, Ezhava, Namboothiri, …). |
 | `community_panel_aliases.tsv` | Filename / alias hints that trigger a community reference panel when there is no HO caste bar. |
-| `*_community_reference.tsv` | Published ANI/ASI (and optional Y) ranges scored against ancestry — Tamil, Punjabi, Bengali, Gujarati, Marathi, Kerala. |
+| `*_community_reference.tsv` | Published ANI/ASI (and optional Y) ranges scored against ancestry — Tamil, Punjabi, Bengali, Gujarati, Marathi, Kerala, Telugu. |
 
 Do not download Mondal ENA BAMs (`PRJEB16019`): they are whole genomes, and the Vellalar subset is already in AADR as `VLR`.
 

@@ -14,6 +14,7 @@ BENGALI_COMMUNITY_REF = CASTE_DIR / "bengali_community_reference.tsv"
 GUJARATI_COMMUNITY_REF = CASTE_DIR / "gujarati_community_reference.tsv"
 MARATHI_COMMUNITY_REF = CASTE_DIR / "marathi_community_reference.tsv"
 KERALA_COMMUNITY_REF = CASTE_DIR / "kerala_community_reference.tsv"
+TELUGU_COMMUNITY_REF = CASTE_DIR / "telugu_community_reference.tsv"
 COMMUNITY_PANEL_ALIASES = CASTE_DIR / "community_panel_aliases.tsv"
 DISEASE_DIR = REFERENCE_DIR / "disease"
 PGS_REFERENCE_EUR = DISEASE_DIR / "pgs_reference_eur.tsv"
@@ -479,6 +480,7 @@ class Settings:
     gujarati_community_ref: Path = GUJARATI_COMMUNITY_REF
     marathi_community_ref: Path = MARATHI_COMMUNITY_REF
     kerala_community_ref: Path = KERALA_COMMUNITY_REF
+    telugu_community_ref: Path = TELUGU_COMMUNITY_REF
     community_panel_aliases: Path = COMMUNITY_PANEL_ALIASES
     disease_dir: Path = DISEASE_DIR
     additional_details: Path = ADDITIONAL_DETAILS

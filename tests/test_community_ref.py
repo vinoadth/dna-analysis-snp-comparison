@@ -12,12 +12,14 @@ from dna_compare.comparisons.community_ref import (
     load_marathi_community_reference,
     load_punjabi_community_reference,
     load_tamil_community_reference,
+    load_telugu_community_reference,
     kerala_reference_applicable,
     marathi_reference_applicable,
     parse_y_haplogroups,
     punjabi_reference_applicable,
     score_community_reference,
     tamil_reference_applicable,
+    telugu_reference_applicable,
 )
 from dna_compare.models import ComparisonBlock, HaplogroupResult, PopulationEstimate
 
@@ -280,6 +282,61 @@ class CommunityRefTests(unittest.TestCase):
         nair = next(row for row in result.estimates if row.population == "Nair")
         self.assertTrue(nair.aasi_in_range)
         self.assertTrue(nair.steppe_in_range)
+
+    def test_loads_telugu_rows(self):
+        rows = {row.community_id: row for row in load_telugu_community_reference()}
+        self.assertEqual(
+            set(rows),
+            {"reddy", "kamma", "kapu", "velama", "telugu_brahmin", "mala_madiga"},
+        )
+        kamma = rows["kamma"]
+        self.assertEqual((kamma.steppe_min, kamma.steppe_max), (40, 45))
+        self.assertEqual((kamma.aasi_min, kamma.aasi_max), (50, 55))
+        self.assertEqual(kamma.y_haplogroups["R1a"], 18.5)
+        self.assertIsNone(kamma.y_haplogroups["H-M69"])
+        self.assertEqual(rows["telugu_brahmin"].y_haplogroups["R1a"], 50)
+        self.assertIn("C-M130", rows["mala_madiga"].y_haplogroups)
+
+    def test_telugu_panel_applicability(self):
+        self.assertTrue(telugu_reference_applicable(None, "hyderabad_reddy.vcf"))
+        self.assertFalse(telugu_reference_applicable(None, "malayalam_nair.vcf"))
+        kapu = ComparisonBlock(
+            kind="caste",
+            available=True,
+            estimates=[PopulationEstimate(population="Kapu", percent=35.0, n_snps=100)],
+        )
+        self.assertTrue(telugu_reference_applicable(kapu, "kit.vcf"))
+        brahmin = ComparisonBlock(
+            kind="caste",
+            available=True,
+            estimates=[PopulationEstimate(population="Brahmin", percent=35.0, n_snps=100)],
+        )
+        self.assertFalse(telugu_reference_applicable(brahmin, "kit.vcf"))
+        self.assertTrue(telugu_reference_applicable(brahmin, "guntur_sample.vcf"))
+
+    def test_telugu_panel_scores_dominant_y_without_frequency(self):
+        ancestry = ComparisonBlock(
+            kind="ancestry",
+            available=True,
+            estimates=[
+                PopulationEstimate(population="AASI_Onge", percent=58.0, n_snps=1000),
+                PopulationEstimate(population="Steppe_MLBA", percent=37.0, n_snps=1000),
+                PopulationEstimate(population="Indus_Periphery", percent=5.0, n_snps=1000),
+            ],
+        )
+        result = score_community_reference(
+            ancestry,
+            HaplogroupResult(available=True, sample_best="H-M69"),
+            caste=None,
+            filename="reddy_kit.vcf",
+        )
+        self.assertTrue(result.available)
+        reddy = next(row for row in result.estimates if row.population == "Reddy")
+        self.assertTrue(reddy.aasi_in_range)
+        self.assertTrue(reddy.steppe_in_range)
+        self.assertEqual(reddy.percent, 100.0)
+        self.assertIn("listed as dominant", reddy.y_note)
+        self.assertEqual(reddy.ref_y, "H-M69; L-M20; R1a ~14%")
 
     def test_marathi_panel_scores_ani_asi(self):
         ancestry = ComparisonBlock(
