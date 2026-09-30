@@ -121,6 +121,44 @@ class AdditionalDetail:
 
 
 @dataclass
+class PharmacogeneCall:
+    gene: str
+    phenotype: str | None
+    diplotype: str = ""
+    label: str = ""
+    evidence: list[str] = field(default_factory=list)
+    confidence: str = "none"
+    n_snps: int = 0
+    n_markers: int = 0
+    coverage_status: str = "missing"
+    message: str = ""
+
+    def to_dict(self) -> dict[str, Any]:
+        return asdict(self)
+
+
+@dataclass
+class DrugResponse:
+    drug: str
+    drug_class: str
+    genes: str
+    suitability: str
+    recommendation: str
+    genotype: str = ""
+    evidence: str = ""
+    source: str = ""
+    available: bool = True
+    confidence: str = ""
+    n_snps: int = 0
+    n_markers: int = 0
+    coverage_status: str = ""
+    message: str = ""
+
+    def to_dict(self) -> dict[str, Any]:
+        return asdict(self)
+
+
+@dataclass
 class DiseaseEstimate:
     trait: str
     pgs_id: str
@@ -310,6 +348,16 @@ class ComparisonBlock:
 
 
 @dataclass
+class DrugBlock(ComparisonBlock):
+    genes: list[PharmacogeneCall] = field(default_factory=list)
+
+    def to_dict(self) -> dict[str, Any]:
+        payload = super().to_dict()
+        payload["genes"] = [item.to_dict() for item in self.genes]
+        return payload
+
+
+@dataclass
 class AnalysisResult:
     """JSON-serializable payload for a future POST /analyze API and HTML UI."""
 
@@ -325,6 +373,8 @@ class AnalysisResult:
     community_ref: ComparisonBlock | None = None
     disease: ComparisonBlock | None = None
     additional: ComparisonBlock | None = None
+    drugs: ComparisonBlock | None = None
+    actionable: ComparisonBlock | None = None
     relatedness: RelatednessResult | None = None
     errors: list[str] = field(default_factory=list)
     timings: dict[str, Any] | None = None
@@ -354,6 +404,12 @@ class AnalysisResult:
             ).to_dict(),
             "additional": (
                 self.additional or ComparisonBlock(kind="additional", available=False)
+            ).to_dict(),
+            "drugs": (
+                self.drugs or ComparisonBlock(kind="drugs", available=False)
+            ).to_dict(),
+            "actionable": (
+                self.actionable or ComparisonBlock(kind="actionable", available=False)
             ).to_dict(),
             "relatedness": relatedness.to_dict(),
             "errors": self.errors,

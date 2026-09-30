@@ -35,6 +35,8 @@ DISPLAY_ORDER = (
     "autoimmune_ptpn22",
     "hfe",
     "clotting",
+    "hemoglobin",
+    "alpha1_antitrypsin",
     "mthfr",
     "warfarin",
     "cyp2c19",

@@ -124,6 +124,10 @@
   max-width: 12rem;
 }
 
+.drugs-table .badge {
+  white-space: nowrap;
+}
+
 .hg-table td.num {
   text-align: right;
   font-variant-numeric: tabular-nums;

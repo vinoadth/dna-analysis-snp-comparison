@@ -11,6 +11,8 @@ The web dashboard and CLI share the same analysis engine. Mixture percentages ar
 - **Haplogroups** — Y and mtDNA backbone markers scored from your file, with AADR group frequency context (requires the `.anno` file)
 - **Hominin** — Neanderthal/Denisova informative sites (compact extracts ship with the repo; full VCFs optional)
 - **Disease (PGS)** — overlap with selected polygenic scores from the PGS Catalog
+- **Drug response** — CPIC-style suitable / partially suitable / not suitable verdicts for common medicines. Core tag SNPs cover CYP2C19, CYP2C9, VKORC1, SLCO1B1, TPMT, NUDT15, DPYD, CYP3A5, CYP2D6, HLA-B*57:01, and G6PD. Extra coding alleles from an exome (further star alleles, G6PD deficiency variants, UGT1A1*6, NAT2, BCHE, RYR1/CACNA1S) are scored when the file contains them (tables in `data/references/drugs/`; research only)
+- **Exome findings** — curated coding variants shown only when called. Besides hemoglobin, alpha-1 antitrypsin, MUTYH, and malignant hyperthermia, the exome list covers cystic fibrosis, Wilson disease, Gaucher disease, familial hypercholesterolemia (APOB), phenylketonuria, GJB2 hearing loss, BRCA1 c.68_69del and c.5266dup, BRCA2 c.5946del, the South Asian MYBPC3 25 bp deletion, and G6PD deficiency (`data/references/actionable/variants.tsv`)
 - **Relatedness** — optional second sample for kinship / IBS estimates
 - **Input formats** — `.vcf`, `.vcf.gz`, 23andMe / GEDmatch-style raw `.txt`, `.23andme`
 - **Assembly handling** — GRCh38 exports (e.g. Illumina GSA v3 / `gtc2vcf`) are auto-lifted to hg19 when a UCSC chain file is available

@@ -71,12 +71,20 @@ ibd	IBD / Crohn tags	1	rs11209026	67705958	67240275	G	A	IL23R	Duerr et al. 2006 
 autoimmune_ptpn22	Autoimmune (PTPN22)	1	rs2476601	114377568	113834946	A	G	PTPN22	Bottini et al. 2004 J Exp Med	PTPN22 R620W risk allele present — autoimmune-risk tag (not diagnostic).	One PTPN22 risk allele.	No PTPN22 R620W risk allele.
 cyp2c19	CYP2C19 metabolism	10	rs4244285	96541616	94781859	A	G	CYP2C19	Scott et al. 2011	CYP2C19*2 homozygous — likely poor metabolizer (research only).	One *2 allele — intermediate or poor metabolizer lean.	No CYP2C19*2 allele.
 cyp2c19	CYP2C19 metabolism	10	rs4986893	96540410	94780653	A	G	CYP2C19	Scott et al. 2011	CYP2C19*3 homozygous — likely poor metabolizer (research only).	One *3 allele.	No CYP2C19*3 allele.
-cyp2c19	CYP2C19 metabolism	10	rs28399504	96522463	94762706	A	G	CYP2C19	Scott et al. 2011	CYP2C19*4 allele present — poor-metabolizer lean.	One *4 allele.	No CYP2C19*4 allele.
+cyp2c19	CYP2C19 metabolism	10	rs28399504	96522463	94762706	G	A	CYP2C19	Scott et al. 2011	CYP2C19*4 allele present — poor-metabolizer lean.	One *4 allele.	No CYP2C19*4 allele.
 tpmt	TPMT (thiopurines)	6	rs1142345	18130947	18130918	G	A	TPMT	Weinshilboum 2001	TPMT reduced-function allele homozygous — thiopurine toxicity risk tag.	One TPMT reduced-function allele.	No common TPMT *3A allele.
 slco1b1	SLCO1B1 (statins)	12	rs4149056	21331549	21331549	C	T	SLCO1B1	Link et al. 2008 NEJM	SLCO1B1 reduced-function homozygous — statin myopathy risk tag.	One SLCO1B1 reduced-function allele.	Typical SLCO1B1 genotype.
-nat2	NAT2 acetylator status	8	rs1800566	18257961	18300560	A	G	NAT2	Hein et al. 2000	Slow NAT2 acetylator — slower clearance of some drugs (research only).	Intermediate NAT2 acetylator.	Fast NAT2 acetylator lean.
-nat2	NAT2 acetylator status	8	rs1799930	18258768	18400593	A	G	NAT2	Hein et al. 2000	Slow NAT2 acetylator.	Intermediate NAT2 acetylator.	Fast NAT2 acetylator lean.
-nat2	NAT2 acetylator status	8	rs1208	18258265	18400806	A	G	NAT2	Hein et al. 2000	Slow NAT2 acetylator.	Intermediate NAT2 acetylator.	Fast NAT2 acetylator lean.
+nat2	NAT2 acetylator status	8	rs1801280	18257854	18400344	C	T	NAT2	CPIC NAT2*5	Slow NAT2 acetylator — slower clearance of some drugs (research only).	Intermediate NAT2 acetylator.	Fast NAT2 acetylator lean.
+nat2	NAT2 acetylator status	8	rs1799930	18258103	18400593	A	G	NAT2	CPIC NAT2*6	Slow NAT2 acetylator.	Intermediate NAT2 acetylator.	Fast NAT2 acetylator lean.
+nat2	NAT2 acetylator status	8	rs1799931	18258370	18400860	A	G	NAT2	CPIC NAT2*7	Slow NAT2 acetylator.	Intermediate NAT2 acetylator.	Fast NAT2 acetylator lean.
+hemoglobin	Hemoglobin variants	11	rs334	5248232	5227002	A	T	HBB	HbS c.20A>T	HbS homozygous.	HbS carrier.	No HbS.
+hemoglobin	Hemoglobin variants	11	rs33930165	5248233	5227003	T	C	HBB	HbC c.19G>A	HbC homozygous.	HbC carrier.	No HbC.
+hemoglobin	Hemoglobin variants	11	rs33950507	5248173	5226943	T	C	HBB	HbE c.79G>A	HbE homozygous.	HbE carrier.	No HbE.
+hemoglobin	Hemoglobin variants	11	rs33915217	5248155	5226925	G	C	HBB	HBB c.92+5G>C	IVS-I-5 homozygous.	IVS-I-5 carrier.	No IVS-I-5.
+hemoglobin	Hemoglobin variants	11	rs33971440	5248159	5226929	A	C	HBB	HBB c.92+1G>T	IVS-I-1 homozygous.	IVS-I-1 carrier.	No IVS-I-1.
+hemoglobin	Hemoglobin variants	11	rs63750783	5248205	5226975	T	C	HBB	HBB c.47G>A	Codon 15 homozygous.	Codon 15 carrier.	No codon 15 variant.
+alpha1_antitrypsin	Alpha-1 antitrypsin	14	rs28929474	94844947	94378610	T	C	SERPINA1	PiZ p.Glu366Lys	PiZ homozygous.	PiZ carrier.	No PiZ.
+alpha1_antitrypsin	Alpha-1 antitrypsin	14	rs17580	94847262	94380925	A	T	SERPINA1	PiS p.Glu288Val	PiS homozygous.	PiS carrier.	No PiS.
 hair_color	Hair color	6	rs12203592	396321	396321	G	T	IRF4	Han et al. 2008 Nature Genet	Lighter hair-color alleles (blond/light brown lean).	Mixed hair-color alleles.	Darker hair-color alleles lean.
 hair_color	Hair color	12	rs12821256	89328335	89328335	G	T	KITLG	Gudbjartsson et al. 2008 Nat Genet	Blond/light hair alleles lean.	Mixed hair-color alleles.	Darker hair alleles lean.
 nicotine	Nicotine dependence	15	rs16969968	78882935	78590583	A	G	CHRNA5	Tobacco Genetics Consortium 2010 Nat Genet	Higher nicotine-dependence risk alleles.	One risk allele.	Lower-risk alleles at CHRNA5/CHRNA3.

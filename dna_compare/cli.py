@@ -221,7 +221,7 @@ def _print_human(payload: dict) -> None:
                     f"  {row['chrom']}:{row['pos']}  {row['rsid']}  "
                     f"{row['ref']}>{row['alt']}  GT={row['genotype']}"
                 )
-    for kind in ("hominin", "ancestry", "ancestry_5", "community_ref", "disease", "additional", "populations", "caste"):
+    for kind in ("hominin", "ancestry", "ancestry_5", "community_ref", "disease", "additional", "drugs", "actionable", "populations", "caste"):
         block = payload.get(kind) or {}
         if block.get("hidden"):
             continue
@@ -229,7 +229,12 @@ def _print_human(payload: dict) -> None:
         for note in block.get("notes") or []:
             print(f"  note: {note}")
         for est in block.get("estimates") or []:
-            if "finding" in est:
+            if "drug" in est:
+                print(
+                    f"  {est['drug']}: {est.get('suitability')}  "
+                    f"[{est.get('genotype') or est.get('genes')}]  {est.get('recommendation')}"
+                )
+            elif "finding" in est:
                 print(
                     f"  {est.get('topic')}: {est.get('finding')}  "
                     f"snps={est.get('n_snps')}/{est.get('n_markers')}"

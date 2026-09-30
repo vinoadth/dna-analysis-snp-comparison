@@ -32,12 +32,35 @@ def normalize_chrom(chrom: str) -> str:
     return chrom
 
 
+_BASES = set("ACGTN")
+_SHORT_ALLELE_MAX = 50
+
+
+def _primary_alt(alt: str) -> str:
+    if "," in alt:
+        return alt.split(",", 1)[0]
+    return alt
+
+
+def _is_sequence(token: str) -> bool:
+    return bool(token) and all(base in _BASES for base in token.upper())
+
+
 def _is_snp(ref: str, alt: str) -> bool:
     if ref in {".", ""} or alt in {".", ""}:
         return False
-    if "," in alt:
-        alt = alt.split(",", 1)[0]
+    alt = _primary_alt(alt)
     return len(ref) == 1 and len(alt) == 1 and ref != "*" and alt != "*"
+
+
+def _is_short_variant(ref: str, alt: str) -> bool:
+    """SNP or short indel/MNV small enough to match a curated allele. Skips symbolic SVs."""
+    if ref in {".", ""} or alt in {".", ""}:
+        return False
+    alt = _primary_alt(alt)
+    if not _is_sequence(ref) or not _is_sequence(alt) or ref.upper() == alt.upper():
+        return False
+    return max(len(ref), len(alt)) <= _SHORT_ALLELE_MAX
 
 
 def _parse_gt(gt: str) -> tuple[str, float | None]:
@@ -135,6 +158,7 @@ def iter_vcf_snps(handle: TextIO) -> tuple[list[str], dict, Iterator[dict]]:
             ref = cols[3]
             alt = cols[4]
             snp = _is_snp(ref, alt)
+            short = _is_short_variant(ref, alt)
             alt_primary = alt.split(",", 1)[0]
             gt_raw = cols[9] if len(cols) > 9 else "."
             gt, dosage = _parse_gt(gt_raw)
@@ -148,6 +172,7 @@ def iter_vcf_snps(handle: TextIO) -> tuple[list[str], dict, Iterator[dict]]:
                 "alt": alt_primary,
                 "alt_all": alt,
                 "is_snp": snp,
+                "is_short_variant": short,
                 "genotype": gt,
                 "dosage_alt": dosage,
                 "vcf_filter": cols[6] if len(cols) > 6 else ".",
@@ -267,16 +292,18 @@ def _parse_open(handle: TextIO, *, filename: str, preview_limit: int) -> tuple[V
     for row in rows:
         n_records += 1
         n_file_samples = max(n_file_samples, row["n_samples"])
-        if not row["is_snp"]:
+        keep = row["is_snp"] or row.get("is_short_variant") or row["chrom"] in {"Y", "MT"}
+        if not keep:
             n_skip += 1
-            # Keep Y/MT indels (M17 is an insertion) for haplogroup scoring.
-            if row["chrom"] in {"Y", "MT"}:
-                index[(row["chrom"], row["pos"])] = row
+            continue
+        key = (row["chrom"], row["pos"])
+        index[key] = row
+        if not row["is_snp"]:
+            # Short indels stay in the index for exome allele matching. Counts and the
+            # preview stay SNP-only; Y/MT symbolic alleles are kept for haplogroups.
             continue
         n_snps += 1
         chrom_counts[row["chrom"]] += 1
-        key = (row["chrom"], row["pos"])
-        index[key] = row
         if len(preview) < preview_limit:
             preview.append(
                 VariantRow(

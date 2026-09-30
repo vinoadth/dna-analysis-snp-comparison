@@ -331,7 +331,7 @@ def nat2_finding(index, markers, *, lookups=None):
     score = _pack(len(copies), len(markers), evidence, missing=not copies)
     if not copies:
         return "NAT2 markers were not called on this file.", None, "", score
-    slow = sum(_get(copies, r) for r in ("rs1800566", "rs1799930", "rs1208") if r in copies)
+    slow = sum(_get(copies, r) for r in ("rs1801280", "rs1799930", "rs1799931") if r in copies)
     if slow >= 3:
         return "Slow NAT2 acetylator tag — slower clearance of some drugs (research only).", "slow", "", score
     if slow >= 1:
@@ -457,6 +457,64 @@ def photic_sneeze_finding(index, markers, *, lookups=None):
     return "Unlikely photic sneeze reflex.", "unlikely", "", score
 
 
+def hemoglobin_finding(index, markers, *, lookups=None):
+    copies, evidence = rsid_copies(index, markers, lookups=lookups)
+    score = _pack(len(copies), len(markers), evidence, missing=not copies)
+    if not copies:
+        return "Hemoglobin variants were not called on this file.", None, "", score
+    labels = {
+        "rs334": "HbS",
+        "rs33930165": "HbC",
+        "rs33950507": "HbE",
+        "rs33915217": "IVS-I-5",
+        "rs33971440": "IVS-I-1",
+        "rs63750783": "codon 15",
+    }
+    present = []
+    typed = []
+    for rsid, label in labels.items():
+        if rsid not in copies:
+            continue
+        typed.append(label)
+        n = _get(copies, rsid)
+        if n >= 2:
+            present.append(f"{label} homozygous")
+        elif n >= 1:
+            present.append(f"{label} carrier")
+    if not present:
+        return f"No {' / '.join(typed)} allele at the sites called on this file.", "typical", "", score
+    return (
+        "; ".join(present) + " (research only, not a diagnosis or a blood-bank result).",
+        "variant",
+        "",
+        score,
+    )
+
+
+def alpha1_finding(index, markers, *, lookups=None):
+    copies, evidence = rsid_copies(index, markers, lookups=lookups)
+    score = _pack(len(copies), len(markers), evidence, missing=not copies)
+    if not copies:
+        return "Alpha-1 antitrypsin markers were not called on this file.", None, "", score
+    z, s = _get(copies, "rs28929474"), _get(copies, "rs17580")
+    if z >= 2:
+        return "PiZ homozygous — alpha-1 antitrypsin deficiency genotype (research only).", "PiZZ", "", score
+    if z >= 1 and s >= 1:
+        return "PiZ/PiS — alpha-1 antitrypsin risk genotype (research only).", "PiSZ", "", score
+    if s >= 2:
+        return "PiS homozygous — milder alpha-1 antitrypsin genotype (research only).", "PiSS", "", score
+    if z >= 1:
+        return "PiZ carrier.", "PiZ carrier", "", score
+    if s >= 1:
+        return "PiS carrier.", "PiS carrier", "", score
+    typed = []
+    if "rs28929474" in copies:
+        typed.append("PiZ")
+    if "rs17580" in copies:
+        typed.append("PiS")
+    return f"No {' or '.join(typed)} allele at the sites called on this file.", "typical", "", score
+
+
 def motion_sickness_finding(index, markers, *, lookups=None):
     copies, evidence = rsid_copies(index, markers, lookups=lookups)
     score = _pack(len(copies), len(markers), evidence, missing=not copies)
@@ -490,6 +548,8 @@ COMBO_HANDLERS = {
     "tpmt": tpmt_finding,
     "slco1b1": slco1b1_finding,
     "nat2": nat2_finding,
+    "hemoglobin": hemoglobin_finding,
+    "alpha1_antitrypsin": alpha1_finding,
     "hair_color": hair_color_finding,
     "nicotine": nicotine_finding,
     "obesity": obesity_finding,

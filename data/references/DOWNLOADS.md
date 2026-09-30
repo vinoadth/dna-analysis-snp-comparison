@@ -27,7 +27,20 @@ Source: [PGS Catalog FTP](https://ftp.ebi.ac.uk/pub/databases/spot/pgs/scores/) 
 
 | Save as | What it is |
 | --- | --- |
-| `details.tsv` | Curated single/multi-SNP trait markers (blood type, 9p21 CAD, sleep/chronotype SNPs, pharmacogenomics, etc.) |
+| `details.tsv` | Curated single/multi-SNP trait markers (blood type, hemoglobin, alpha-1 antitrypsin, 9p21 CAD, sleep/chronotype SNPs, pharmacogenomics, etc.) |
+
+## Exome findings (`data/references/actionable/`)
+
+| Save as | What it is |
+| --- | --- |
+| `variants.tsv` | Curated coding variants shown only when the allele is called: cystic fibrosis, Wilson, Gaucher, familial hypercholesterolemia, phenylketonuria, GJB2 hearing loss, BRCA1 c.68_69del and c.5266dup, BRCA2 c.5946del, MYBPC3 25 bp deletion, G6PD, hemoglobin, alpha-1 antitrypsin, MUTYH, and malignant hyperthermia |
+
+## Drug response (`data/references/drugs/`)
+
+| Save as | What it is |
+| --- | --- |
+| `pgx_markers.tsv` | Core tag SNPs plus extra coding alleles (tier `extra`) scored when an exome calls them |
+| `drug_guidance.tsv` | Drug × phenotype suitability rows |
 
 Sleep/chronotype rows use published ADA (`rs73598374`), CLOCK (`rs1801260`), PER2 (`rs516134`), and PER3 (`rs228697`) markers from chronotype and sleep-homeostasis literature. Heart-disease rows use the 9p21 locus (`rs1333049`, `rs4977574`).
 

@@ -462,6 +462,139 @@
     );
   }
 
+  const DRUG_VERDICTS = {
+    not_suitable: { label: "Not suitable", cls: "text-bg-danger", order: 0 },
+    partial: { label: "Partially suitable", cls: "text-bg-warning", order: 1 },
+    suitable: { label: "Suitable", cls: "text-bg-success", order: 2 },
+    unknown: { label: "Unknown", cls: "text-bg-light border text-muted", order: 3 },
+  };
+
+  function drugVerdictBadge(key) {
+    const verdict = DRUG_VERDICTS[key] || DRUG_VERDICTS.unknown;
+    return '<span class="badge ' + verdict.cls + '">' + escapeHtml(verdict.label) + "</span>";
+  }
+
+  function actionableCard(block) {
+    const estimates = (block && block.estimates) || [];
+    const rows = estimates
+      .map(function (row) {
+        return (
+          "<tr><td>" +
+          escapeHtml(row.topic || "") +
+          "</td><td><strong>" +
+          escapeHtml(row.finding || "") +
+          "</strong></td><td class=\"small\">" +
+          escapeHtml(row.evidence || "") +
+          "</td><td class=\"small col-source\">" +
+          escapeHtml(row.source || "") +
+          "</td></tr>"
+        );
+      })
+      .join("");
+    const empty = rows
+      ? ""
+      : '<p class="mb-2">None of the curated variant alleles were called in this file.</p>';
+    return card(
+      "Exome findings",
+      '<p class="small text-secondary mb-2">Coding variants an exome can call when a SNP array usually cannot: cystic fibrosis, Wilson disease, Gaucher / Parkinson risk, familial hypercholesterolemia, phenylketonuria, GJB2 hearing loss, BRCA1 185delAG and 5382insC, BRCA2 6174delT, South Asian MYBPC3 cardiomyopathy, hemoglobin, alpha-1 antitrypsin, MUTYH, G6PD deficiency, and malignant hyperthermia. Research only. One recessive copy is a carrier result. Sites missing from the file are not listed.</p>' +
+        empty +
+        '<div class="table-responsive"><table class="table table-sm table-striped table-hover align-top additional-table"><thead><tr>' +
+        "<th>Condition</th><th>Finding</th><th>Evidence</th><th>Source</th>" +
+        "</tr></thead><tbody>" +
+        (rows || '<tr><td colspan="4">No curated variant alleles called.</td></tr>') +
+        "</tbody></table></div>" +
+        notesList(block && block.notes)
+    );
+  }
+
+  function drugsCard(block) {
+    const estimates = ((block && block.estimates) || []).slice();
+    const order = function (row) {
+      return (DRUG_VERDICTS[row.suitability] || DRUG_VERDICTS.unknown).order;
+    };
+    const indexed = estimates.map(function (row, i) {
+      return { row: row, i: i };
+    });
+    indexed.sort(function (a, b) {
+      return order(a.row) - order(b.row) || a.i - b.i;
+    });
+    const summary = Object.keys(DRUG_VERDICTS)
+      .map(function (key) {
+        const n = estimates.filter(function (row) {
+          return (row.suitability || "unknown") === key;
+        }).length;
+        return drugVerdictBadge(key) + ' <span class="me-3">' + n + "</span>";
+      })
+      .join("");
+    const rows = indexed
+      .map(function (item) {
+        const row = item.row;
+        return (
+          "<tr><td><strong>" +
+          escapeHtml(row.drug || "") +
+          '</strong><div class="small text-secondary">' +
+          escapeHtml(row.drug_class || "") +
+          "</div></td><td>" +
+          drugVerdictBadge(row.suitability) +
+          '</td><td class="col-finding">' +
+          escapeHtml(row.recommendation || "") +
+          '</td><td class="small">' +
+          escapeHtml(row.genotype || row.genes || "") +
+          "</td><td>" +
+          escapeHtml(row.coverage_status || "missing") +
+          '</td><td class="small col-source">' +
+          escapeHtml(row.source || "") +
+          '</td><td class="small col-note">' +
+          escapeHtml(row.message || "—") +
+          "</td></tr>"
+        );
+      })
+      .join("");
+    const genes = ((block && block.genes) || [])
+      .map(function (gene) {
+        const evidence = (gene.evidence || []).map(escapeHtml).join("<br>");
+        return (
+          "<tr><td>" +
+          escapeHtml(gene.gene || "") +
+          "</td><td>" +
+          escapeHtml(gene.label || "") +
+          '</td><td class="num">' +
+          Number(gene.n_snps || 0).toLocaleString() +
+          " / " +
+          Number(gene.n_markers || 0).toLocaleString() +
+          "</td><td>" +
+          escapeHtml(gene.confidence || "none") +
+          '</td><td class="small col-evidence">' +
+          (evidence || "—") +
+          '</td><td class="small col-note">' +
+          escapeHtml(gene.message || "—") +
+          "</td></tr>"
+        );
+      })
+      .join("");
+    return card(
+      "Drug response (pharmacogenomics)",
+      '<p class="small text-secondary mb-2">How this genotype may affect common medicines, simplified from CPIC guidelines. Research overlay only — never change a medicine without your doctor or pharmacist.</p>' +
+        '<p class="mb-3">' +
+        summary +
+        "</p>" +
+        '<div class="table-responsive"><table class="table table-sm table-striped table-hover align-top additional-table drugs-table"><thead><tr>' +
+        "<th>Drug</th><th>Verdict</th><th>Guidance</th><th>Your genotype</th><th>Coverage</th><th>Source</th><th>Note</th>" +
+        "</tr></thead><tbody>" +
+        (rows || '<tr><td colspan="7">No drug guidance available.</td></tr>') +
+        "</tbody></table></div>" +
+        (genes
+          ? '<h6 class="mt-4">Gene results</h6>' +
+            '<div class="table-responsive"><table class="table table-sm table-striped align-top additional-table"><thead><tr>' +
+            "<th>Gene</th><th>Result</th><th>SNPs used / listed</th><th>Confidence</th><th>Evidence</th><th>Note</th>" +
+            "</tr></thead><tbody>" +
+            genes +
+            "</tbody></table></div>"
+          : "") +
+        notesList(block && block.notes)
+    );
+  }
+
   function diseaseCoverageBadge(status) {
     const key = String(status || "missing").toLowerCase();
     const labels = {
@@ -1236,6 +1369,16 @@
       id: "additional",
       label: "Additional details",
       body: additionalCard(payload.additional || {}),
+    });
+    tabs.push({
+      id: "actionable",
+      label: "Exome findings",
+      body: actionableCard(payload.actionable || {}),
+    });
+    tabs.push({
+      id: "drugs",
+      label: "Drug response",
+      body: drugsCard(payload.drugs || {}),
     });
     if (related) {
       tabs.push({ id: "relatedness", label: "Relatedness", body: related });

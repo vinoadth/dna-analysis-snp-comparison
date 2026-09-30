@@ -13,8 +13,10 @@ from dna_compare.comparisons import (
     compare_hominin,
     compare_populations,
     compare_relatedness,
+    compare_actionable,
     compare_additional,
     compare_disease,
+    compare_drugs,
     score_community_reference,
 )
 from dna_compare.assembly import assembly_note, detect_assembly
@@ -97,6 +99,7 @@ class AnalysisService:
                 community_ref=ComparisonBlock(kind="community_ref", available=False, notes=[str(exc)]),
                 disease=ComparisonBlock(kind="disease", available=False, notes=[str(exc)]),
                 additional=ComparisonBlock(kind="additional", available=False, notes=[str(exc)]),
+                drugs=ComparisonBlock(kind="drugs", available=False, notes=[str(exc)]),
                 relatedness=RelatednessResult(available=False, notes=[str(exc)]),
                 errors=[str(exc)],
             )
@@ -114,6 +117,7 @@ class AnalysisService:
                 community_ref=ComparisonBlock(kind="community_ref", available=False, notes=[str(exc)]),
                 disease=ComparisonBlock(kind="disease", available=False, notes=[str(exc)]),
                 additional=ComparisonBlock(kind="additional", available=False, notes=[str(exc)]),
+                drugs=ComparisonBlock(kind="drugs", available=False, notes=[str(exc)]),
                 relatedness=RelatednessResult(available=False, notes=[str(exc)]),
                 errors=[f"Failed to parse genotype file: {exc}"],
             )
@@ -187,6 +191,12 @@ class AnalysisService:
                 other_filename=other_name,
             )
 
+        def _run_drugs():
+            return compare_drugs(index, settings=self.settings)
+
+        def _run_actionable():
+            return compare_actionable(index, settings=self.settings)
+
         with timings.stage("comparisons"):
             other_index: dict[tuple[str, int], dict] | None = None
             other_name: str | None = None
@@ -215,9 +225,11 @@ class AnalysisService:
                 "haplogroups": _run_haplogroups,
                 "disease": _run_disease,
                 "additional": _run_additional,
+                "drugs": _run_drugs,
+                "actionable": _run_actionable,
             }
             results: dict[str, object] = {}
-            with ThreadPoolExecutor(max_workers=min(8, len(jobs))) as pool:
+            with ThreadPoolExecutor(max_workers=len(jobs)) as pool:
                 futures = {name: pool.submit(fn) for name, fn in jobs.items()}
                 for name, fut in futures.items():
                     results[name] = fut.result()
@@ -229,6 +241,8 @@ class AnalysisService:
             haplogroups = results["haplogroups"]  # type: ignore[assignment]
             disease = results["disease"]  # type: ignore[assignment]
             additional = results["additional"]  # type: ignore[assignment]
+            drugs = results["drugs"]  # type: ignore[assignment]
+            actionable = results["actionable"]  # type: ignore[assignment]
 
         with timings.stage("community_ref"):
             community_ref = score_community_reference(
@@ -254,6 +268,8 @@ class AnalysisService:
             community_ref.notes = [note] + list(community_ref.notes)
             disease.notes = [note] + list(disease.notes)
             additional.notes = [note] + list(additional.notes)
+            drugs.notes = [note] + list(drugs.notes)
+            actionable.notes = [note] + list(actionable.notes)
 
         timing_payload = timings.to_dict() if timings.enabled else None
         return AnalysisResult(
@@ -269,6 +285,8 @@ class AnalysisService:
             community_ref=community_ref,
             disease=disease,
             additional=additional,
+            drugs=drugs,
+            actionable=actionable,
             relatedness=relatedness,
             timings=timing_payload,
         )
